@@ -3,4 +3,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="t999">#999999</color>
+    <color name="t666">#666666</color>
+    <color name="t333">#333333</color>
 </resources>

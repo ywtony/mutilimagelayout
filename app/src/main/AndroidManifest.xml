@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yw.imagesadapterview">
+    package="com.yw.custommutilimageadapter">
 
     <application
         android:allowBackup="true"
@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--折叠掩盖布局展示，支持横向纵向以及任意位置布局全部露出-->
+        <activity android:name=".ui.FoldLayoutViewActivity" />
+        <!--  固定多个不规则布局展示      -->
+        <activity android:name=".ui.CustomMutilImageViewActivity" />
     </application>
 
 </manifest>
