@@ -53,6 +53,13 @@ class FoldLayoutViewActivity : Activity() {
             }
 
         })
+        foldViewH.setAdapter(adapter!!)
+        foldViewH.setOnItemClickListener(object: FoldLayoutView.OnItemClickListener{
+            override fun onItemClick(index: Int) {
+                Toast.makeText(this@FoldLayoutViewActivity, "哈哈哈：$index",Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun getDataViews(): ArrayList<View> {

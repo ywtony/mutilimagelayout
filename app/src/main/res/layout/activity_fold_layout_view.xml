@@ -2,13 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <com.yw.library.weight.FoldLayoutView
-        android:id="@+id/foldView"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--    布局横向排列-->
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:directionMode="1"
-        />
+        android:layout_height="wrap_content">
 
+        <com.yw.library.weight.FoldLayoutView
+            android:id="@+id/foldViewH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:defaultChildMarginLeft="30"
+            app:directionMode="0" />
+    </HorizontalScrollView>
+    <!--布局纵向排列-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.yw.library.weight.FoldLayoutView
+            android:id="@+id/foldView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:defaultChildMarginLeft="30"
+            app:directionMode="1" />
+    </ScrollView>
 </LinearLayout>

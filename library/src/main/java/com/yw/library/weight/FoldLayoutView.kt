@@ -5,6 +5,8 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import androidx.core.view.marginLeft
 import com.yw.library.R
 import com.yw.library.adapter.BaseFoldLayoutAdapter
 import com.yw.library.utils.PxUtils
@@ -91,7 +93,29 @@ class FoldLayoutView : ViewGroup {
      */
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        var width = MeasureSpec.getSize(widthMeasureSpec)
+        val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+        var height = MeasureSpec.getSize(heightMeasureSpec)
+        val heightMode = MeasureSpec.getMode(heightMeasureSpec)
+        //测量子View
         measureChildren(widthMeasureSpec, heightMeasureSpec)
+        var childTotalWidth = 0
+        var childTotalHeight = 0
+        val count = childCount
+        if (directionMode == 0) {//水平
+            for (index in 0 until count) {
+                childTotalWidth += (getChildAt(index).measuredWidth - if (index == 0) 0 else defaultChildMarginLeft)
+                childTotalHeight = getChildAt(index).measuredHeight
+                Log.e("width|height:", "$width|$height")
+            }
+        } else {//竖直
+            for (index in 0 until count) {
+                childTotalWidth = getChildAt(index).measuredWidth
+                childTotalHeight += (getChildAt(index).measuredHeight - if (index == 0) 0 else defaultChildMarginLeft)
+            }
+        }
+        Log.e("width|height:", "$width|$height")
+        setMeasuredDimension(childTotalWidth, childTotalHeight)
     }
 
     /**
@@ -125,18 +149,18 @@ class FoldLayoutView : ViewGroup {
             when (directionMode) {
                 0 -> {
                     childView.layout(
-                        index * width - index * 60,
+                        index * width - index * defaultChildMarginLeft,
                         0,
-                        (index + 1) * (width) - index * 60,
+                        (index + 1) * (width) - index * defaultChildMarginLeft,
                         height
                     )
                 }
                 else -> {//纵向布局，只会改变其高度不会改变其长度
                     childView.layout(
                         0,
-                        index * height - index * 60,
+                        index * height - index * defaultChildMarginLeft,
                         width,
-                        (index + 1) * (height) - index * 60
+                        (index + 1) * (height) - index * defaultChildMarginLeft
                     )
                 }
             }
