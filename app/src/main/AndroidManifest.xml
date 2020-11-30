@@ -20,6 +20,7 @@
         <activity android:name=".ui.FoldLayoutViewActivity" />
         <!--  固定多个不规则布局展示      -->
         <activity android:name=".ui.CustomMutilImageViewActivity" />
+        <activity android:name=".ui.FoldCardViewLayoutActivity"/>
     </application>
 
 </manifest>
