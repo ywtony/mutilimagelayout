@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yw.library.weight.MyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/t333"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="第一个View"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/t999"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="第一个View"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/t666"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="第一个View"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorPrimaryDark"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="第一个View"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorAccent"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="第一个View"
+        android:textColor="@color/white" />
+</com.yw.library.weight.MyScrollView>

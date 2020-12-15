@@ -21,6 +21,7 @@
         <!--  固定多个不规则布局展示      -->
         <activity android:name=".ui.CustomMutilImageViewActivity" />
         <activity android:name=".ui.FoldCardViewLayoutActivity"/>
+        <activity android:name=".ui.MyScrollViewActivity"/>
     </application>
 
 </manifest>
