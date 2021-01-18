@@ -5,10 +5,7 @@ import android.os.Bundle
 import com.yw.custommutilimageadapter.adapter.BaseListAdapter
 import com.yw.custommutilimageadapter.adapter.MainAdapter
 import com.yw.custommutilimageadapter.bean.ClassBean
-import com.yw.custommutilimageadapter.ui.CustomMutilImageViewActivity
-import com.yw.custommutilimageadapter.ui.FoldCardViewLayoutActivity
-import com.yw.custommutilimageadapter.ui.FoldLayoutViewActivity
-import com.yw.custommutilimageadapter.ui.MyScrollViewActivity
+import com.yw.custommutilimageadapter.ui.*
 import com.yw.custommutilimageadapter.utils.ActivityUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -32,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         list.add(ClassBean("不规则布局多图展示", CustomMutilImageViewActivity::class.java.name))
         list.add(ClassBean("遮掩布局展示", FoldCardViewLayoutActivity::class.java.name))
         list.add(ClassBean("自定义ScrollView", MyScrollViewActivity::class.java.name))
+        list.add(ClassBean("自定义EditText", EditTextActivity::class.java.name))
         val adapter = MainAdapter(this, list,
             BaseListAdapter.OnListItemClickListener<ClassBean> { data, position ->
                 ActivityUtils.startActivity(this@MainActivity, data.className)

@@ -22,6 +22,7 @@
         <activity android:name=".ui.CustomMutilImageViewActivity" />
         <activity android:name=".ui.FoldCardViewLayoutActivity"/>
         <activity android:name=".ui.MyScrollViewActivity"/>
+        <activity android:name=".ui.EditTextActivity"/>
     </application>
 
 </manifest>
