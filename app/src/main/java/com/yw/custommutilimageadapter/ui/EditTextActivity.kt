@@ -25,14 +25,18 @@ class EditTextActivity : Activity() {
         setContentView(R.layout.activity_edittext)
         initViews()
     }
-    private fun initViews(){
+
+    private fun initViews() {
         btnStart.setOnClickListener {
-            etContent.addAtSpan("@","朋友的酒");
+            etContent.addRichSpan("@", "朋友的酒", R.color.t333);
             etContent.text?.length?.let { it1 -> etContent.setSelection(it1) };
         }
         btnEnd.setOnClickListener {
-            etContent.addAtSpan("#","话题1");
+            etContent.addRichSpan("#", "话题1", R.color.colorAccent);
             etContent.text?.length?.let { it1 -> etContent.setSelection(it1) };
+        }
+        btnPrint.setOnClickListener {
+            etContent.getSpansString()
         }
     }
 }

@@ -4,10 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.yw.library.weight.et.ReleaseEditTextView
+    <!--    <com.yw.library.weight.et.ReleaseEditTextView-->
+    <!--        android:id="@+id/etContent"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="200dp" />-->
+    <com.yw.library.weight.cet.RichEditTextView
         android:id="@+id/etContent"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="200dp"
+        android:padding="2dp"
+        android:background="@color/white"
+        android:gravity="top|left" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,5 +32,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="输入#符号" />
+        <Button
+            android:id="@+id/btnPrint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打印输入的字符串" />
     </LinearLayout>
 </LinearLayout>

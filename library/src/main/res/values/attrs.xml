@@ -10,4 +10,10 @@
         <attr name="defaultChildMarginBottom" format="integer" />
         <attr name="directionMode" format="integer" />
     </declare-styleable>
+    <declare-styleable name="blur">
+        <attr name="blurAlphaColor" format="reference|color" />
+        <attr name="blurAlpha" format="integer" />
+        <attr name="blurWidth" format="dimension" />
+        <attr name="blurHeight" format="dimension" />
+    </declare-styleable>
 </resources>

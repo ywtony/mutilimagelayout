@@ -23,6 +23,7 @@
         <activity android:name=".ui.FoldCardViewLayoutActivity"/>
         <activity android:name=".ui.MyScrollViewActivity"/>
         <activity android:name=".ui.EditTextActivity"/>
+        <activity android:name=".ui.BlurAlphaViewActivity"/>
     </application>
 
 </manifest>

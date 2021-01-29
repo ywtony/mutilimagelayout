@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:blur="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@mipmap/fengjing1"
+    android:layout_height="match_parent">
+
+    <com.yw.library.weight.blur.BlurAlphaView
+        android:id="@+id/blurAlphaView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        blur:blurAlpha="30"
+        android:layout_centerInParent="true"
+        blur:blurAlphaColor="@color/black"
+        blur:blurHeight="300dp"
+        blur:blurWidth="300dp" >
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="#ff0000"/>
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="#000000"/>
+    </com.yw.library.weight.blur.BlurAlphaView>
+
+
+</RelativeLayout>
