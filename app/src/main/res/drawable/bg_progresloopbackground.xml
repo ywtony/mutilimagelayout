@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!--打卡线性渐变的那个小背景-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+       
+    <gradient
+        android:angle="360"
+        android:endColor="#ffffff80"
+        android:startColor="@color/transparent" />
+
+</shape>

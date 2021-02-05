@@ -37,6 +37,10 @@
         <activity
             android:name=".ui.ArcActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ProgressLoopBackgroundActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

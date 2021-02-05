@@ -7,4 +7,6 @@
     <color name="t666">#666666</color>
     <color name="t333">#333333</color>
     <color name="white">#ffffff</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="color_FFEA5B">#FFEA5B</color>
 </resources>
