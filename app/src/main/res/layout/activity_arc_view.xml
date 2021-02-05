@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yw.library.weight.arc.ArcView
+        android:id="@+id/arcView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:arcHeight="100dp"
+        app:bgColor="@color/t666"
+        app:lgColor="@color/colorAccent"
+        android:background="@mipmap/fengjing1"/>
+    <com.yw.library.weight.arc.ArcImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/fengjing1"
+        app:arcHeight="150dp"
+        android:background="@color/t999"
+        />
+</LinearLayout>

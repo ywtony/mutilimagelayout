@@ -9,6 +9,10 @@
         <attr name="defaultChildMarginTop" format="integer" />
         <attr name="defaultChildMarginBottom" format="integer" />
         <attr name="directionMode" format="integer" />
+<!--        以下是弧形属性测试-->
+        <attr name="arcHeight" format="dimension"/>
+        <attr name="lgColor"   format="color"/>
+        <attr name="bgColor" format="color"/>
     </declare-styleable>
     <declare-styleable name="blur">
         <attr name="blurAlphaColor" format="reference|color" />
@@ -16,4 +20,10 @@
         <attr name="blurWidth" format="dimension" />
         <attr name="blurHeight" format="dimension" />
     </declare-styleable>
+    <!--弧形的界面属性-->
+<!--    <declare-styleable name="ArcView">-->
+<!--        <attr name="arcHeight" format="dimension"/>-->
+<!--        <attr name="lgColor"   format="color"/>-->
+<!--        <attr name="bgColor" format="color"/>-->
+<!--    </declare-styleable>-->
 </resources>

@@ -19,11 +19,24 @@
         <!--折叠掩盖布局展示，支持横向纵向以及任意位置布局全部露出-->
         <activity android:name=".ui.FoldLayoutViewActivity" />
         <!--  固定多个不规则布局展示      -->
-        <activity android:name=".ui.CustomMutilImageViewActivity" />
-        <activity android:name=".ui.FoldCardViewLayoutActivity"/>
-        <activity android:name=".ui.MyScrollViewActivity"/>
-        <activity android:name=".ui.EditTextActivity"/>
-        <activity android:name=".ui.BlurAlphaViewActivity"/>
+        <activity
+            android:name=".ui.CustomMutilImageViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.FoldCardViewLayoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.MyScrollViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.EditTextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.BlurAlphaViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ArcActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

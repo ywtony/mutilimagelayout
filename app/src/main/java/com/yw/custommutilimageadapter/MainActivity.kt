@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         list.add(ClassBean("自定义ScrollView", MyScrollViewActivity::class.java.name))
         list.add(ClassBean("自定义EditText", EditTextActivity::class.java.name))
         list.add(ClassBean("模糊半透明效果", BlurAlphaViewActivity::class.java.name))
+        list.add(ClassBean("自定义弧形背景", ArcActivity::class.java.name))
+
         val adapter = MainAdapter(this, list,
             BaseListAdapter.OnListItemClickListener<ClassBean> { data, position ->
                 ActivityUtils.startActivity(this@MainActivity, data.className)
