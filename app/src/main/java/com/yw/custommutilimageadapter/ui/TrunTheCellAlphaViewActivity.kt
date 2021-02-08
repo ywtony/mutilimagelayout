@@ -47,7 +47,10 @@ class TrunTheCellAlphaViewActivity : FragmentActivity() {
 //        })
 
 
-        clipBitmapViewGroup.setAdapter(getDataViews(), 2f)
+//        clipBitmapViewGroup.setAdapter(getDataViews(), 2f)
+        val bitmap1 = BitmapFactory.decodeResource(resources,R.mipmap.big_girl)
+        val bitmap2 = BitmapFactory.decodeResource(resources,R.mipmap.fengjing1)
+        clipBitmapViewGroup.setAdapter(bitmap1,bitmap2,30,2f,R.layout.item_clip_bitmap_viewgroup)
     }
 
 
