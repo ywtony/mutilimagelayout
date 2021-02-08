@@ -30,4 +30,5 @@
     <!--        <attr name="lgColor"   format="color"/>-->
     <!--        <attr name="bgColor" format="color"/>-->
     <!--    </declare-styleable>-->
+    <declare-styleable name="roundedView"><attr format="dimension" name="rounded_radius"/></declare-styleable>
 </resources>

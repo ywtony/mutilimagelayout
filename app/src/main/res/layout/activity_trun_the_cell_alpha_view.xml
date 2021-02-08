@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yw.library.weight.ttcav.RoundedLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:roundedView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    roundedView:rounded_radius="12dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/big_girl" />
+
+    <com.yw.library.weight.ttcav.AlphaView
+        android:id="@+id/alphaView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</com.yw.library.weight.ttcav.RoundedLayout>

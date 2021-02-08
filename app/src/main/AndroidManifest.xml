@@ -40,6 +40,9 @@
         <activity
             android:name=".ui.ProgressLoopBackgroundActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TrunTheCellAlphaViewActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
