@@ -1,10 +1,7 @@
 package com.yw.library.weight.ttcav
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
@@ -32,6 +29,12 @@ class AlphaView : View {
      * 签到到少天了
      */
     private var days: Int = 1
+    private var minWidth = 0;
+    private var minHeight = 0
+    private var currentRow = 0
+    private var currentCol = 0
+    private var matrix2: Matrix? = null
+    private var camera: Camera? = null
 
     constructor(context: Context) : super(context, null, 0) {
 
@@ -51,6 +54,8 @@ class AlphaView : View {
     }
 
     private fun init(context: Context, attrs: AttributeSet) {
+        matrix2 = Matrix()
+        camera = Camera()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //设置背景颜色为黑色
             setBackgroundColor(context.getColor(R.color.black))
@@ -59,6 +64,7 @@ class AlphaView : View {
     }
 
     override fun onDraw(canvas: Canvas?) {
+//        postInvalidate()
         Log.e("AlphaView:", "执行了onDraw方法")
         val paintLine = Paint()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -76,8 +82,47 @@ class AlphaView : View {
         //获取view的宽度
         val width = measuredWidth
         val height = measuredHeight
-        val minWidth = width / 5
-        val minHeight = height / 6
+        minWidth = width / 5
+        minHeight = height / 6
+
+
+//
+//        canvas?.save()
+//        camera?.save()
+//        //饶x轴转
+//        camera?.rotateX(60f)
+//        //设置camera作用矩阵
+//        camera?.getMatrix(matrix2)
+//        camera?.restore()
+//        //计算中心点坐标
+//        var centerX =
+//            ((currentCol * minWidth).toFloat() + minWidth - (currentCol * minWidth).toFloat()) / 2 + (currentCol * minWidth).toFloat()
+//        var centerY =
+//            ((currentRow * minHeight).toFloat() + minHeight - (currentRow * minHeight).toFloat()) / 2 + (currentRow * minHeight).toFloat()
+//        //设置旋转中心点
+//        matrix2?.preTranslate(centerX, centerY)
+//        canvas?.setMatrix(matrix2)
+//        canvas?.drawRect(
+//            (currentCol * minWidth).toFloat(),
+//            (currentRow * minHeight).toFloat(),
+//            (currentCol * minWidth).toFloat() + minWidth,
+//            (currentRow * minHeight).toFloat() + minHeight,
+//            paintRect
+//        )
+//        canvas?.restore()
+
+//        canvas?.save()
+////        matrix2?.setRotate(60f)
+//        canvas?.concat(matrix2)
+//        canvas?.drawRect(
+//            (currentCol * minWidth).toFloat(),
+//            (currentRow * minHeight).toFloat(),
+//            (currentCol * minWidth).toFloat() + minWidth,
+//            (currentRow * minHeight).toFloat() + minHeight,
+//            paintRect
+//        )
+//        canvas?.restore()
+
 
         /**
          * 1.判断如果是前三个格子，则不进行绘制
@@ -144,6 +189,8 @@ class AlphaView : View {
         val newCellCountX = clickX?.div(minWidth)?.toInt()
         val newCellCountY = clickY?.div(minHeight)?.toInt()
         days = newCellCountY * 5 + newCellCountX + 1
+        currentRow = newCellCountY
+        currentCol = newCellCountX + 1
         if (listener != null) {
             //执行点击事件前执行翻转动画
             listener?.onDayClick(days, event.x, event.y)

@@ -1,8 +1,11 @@
 package com.yw.custommutilimageadapter.ui
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.AnimationSet
 import android.widget.ImageView
 import androidx.fragment.app.FragmentActivity
 import com.yw.custommutilimageadapter.R
@@ -66,6 +69,17 @@ class CustomMutilImageViewActivity : FragmentActivity() {
         val img4 = ImageView(this)
         img4.setImageResource(R.drawable.girl4)
         img4.scaleType = ImageView.ScaleType.CENTER_CROP
+        //点击后执行动画
+        img4.setOnClickListener {
+            val animat = AnimatorSet()
+            animat.playTogether(
+//                ObjectAnimator.ofFloat(img4,"rotationY",0f,90f),//绕X轴翻转
+                ObjectAnimator.ofFloat(img4,"scaleX",0f,1f)//X轴拉伸
+            )
+            animat.setDuration(1000).start()
+        }
+
+
 
 
         when (size) {
