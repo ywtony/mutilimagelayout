@@ -26,6 +26,7 @@ import com.yw.library.utils.PxUtils.dp2px
  * @Package:        com.yw.library.weight.ttcav
  * @ClassName:      ClipBitmapViewGroup
  * @Description:     切割bitmap动画容器 ps:如果不是非全屏的需要手动指定此View的宽和高，只指定父容器是不行的
+ *                   ps:子View必须是一个FrameLayout中放两个ImageView，目前是固定写法。不支持其他写法
  * @Author:         wei.yang
  * @CreateDate:     2021/2/8 14:32
  * @UpdateUser:     更新者：wei.yang
