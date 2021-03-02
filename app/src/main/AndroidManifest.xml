@@ -43,6 +43,9 @@
         <activity
             android:name=".ui.TrunTheCellAlphaViewActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TaskProgressBarActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

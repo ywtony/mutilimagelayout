@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="62dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/oneProgress"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_barg_one_progress"
+        android:gravity="center"
+        android:text="0%"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/twoProgress"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_barg_one_progress2"
+        android:gravity="center"
+        android:text="25%"
+        android:textColor="@color/color_FF7201"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/threeProgress"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_barg_three_progress2"
+        android:gravity="center"
+        android:text="50%"
+        android:textColor="@color/color_FF7201"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/fourProgress"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_barg_four_progress2"
+        android:gravity="center"
+        android:text="1000元\n现金红包"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/color_FF7201"
+        android:textSize="10sp" />
+</RelativeLayout>

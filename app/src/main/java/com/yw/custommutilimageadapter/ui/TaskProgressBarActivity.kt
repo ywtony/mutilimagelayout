@@ -1,31 +1,31 @@
 package com.yw.custommutilimageadapter.ui
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.fragment.app.FragmentActivity
 import com.yw.custommutilimageadapter.R
-import kotlinx.android.synthetic.main.activity_progress_loop_background.*
+import kotlinx.android.synthetic.main.activity_progress_loop_background.btnStart
+import kotlinx.android.synthetic.main.activity_task_progress_bar.*
 
 /**
  *
  * @ProjectName:    CustomMutilImageAdapter
  * @Package:        com.yw.custommutilimageadapter.ui
- * @ClassName:      ProgressLoopBackgroundActivity
- * @Description:     循环背景动画
+ * @ClassName:      TaskProgressBarActivity
+ * @Description:     砍价进度条
  * @Author:         wei.yang
- * @CreateDate:     2021/2/5 14:52
+ * @CreateDate:     2021/3/1 17:45
  * @UpdateUser:     更新者：wei.yang
- * @UpdateDate:     2021/2/5 14:52
+ * @UpdateDate:     2021/3/1 17:45
  * @UpdateRemark:   更新说明：
  * @Version:        1.0
  */
-class ProgressLoopBackgroundActivity : FragmentActivity() {
+class TaskProgressBarActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_progress_loop_background)
+        setContentView(R.layout.activity_task_progress_bar)
         btnStart.setOnClickListener {
-            progressLoopBackgroundView.startAnimation()
+            progressBar.requestProgressBar(0.5f)
         }
     }
 }
