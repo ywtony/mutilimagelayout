@@ -11,6 +11,7 @@
 <!--        android:layout_marginEnd="30dp"-->
 <!--        android:layout_height="130dp"/>-->
     <com.yw.library.weight.MyTaskProgressBar
+        android:id="@+id/taskBar"
         android:layout_width="match_parent"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"

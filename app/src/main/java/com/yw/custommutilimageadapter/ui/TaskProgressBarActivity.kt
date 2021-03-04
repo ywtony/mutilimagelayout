@@ -24,8 +24,9 @@ class TaskProgressBarActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_progress_bar)
+//        taskBar.requestProgressBar(0.9f)
         btnStart.setOnClickListener {
-//            progressBar.requestProgressBar(1f)
+            taskBar.requestProgressBar(1f)
         }
     }
 }

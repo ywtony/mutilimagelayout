@@ -61,13 +61,22 @@ class MyTaskProgressBar : View {
     private var mTxtHeight: Float = 0f
 
     //进度0~100
-    private var progress: Float = 0.90f
-
+    private var progress: Float = 0.70f
+    /**
+     * 0:<25%
+     * 1:>2=25%<50%
+     * 2:>=50%<=75%
+     * 3:>75%<100
+     * 4:=100%
+     */
+    private var progressType: Int = 0//砍一刀进度
     //
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         paintCircle?.color = Color.parseColor("#FCF05D")
         paintCircle?.strokeWidth = PxUtils.dp2px(context, 1.5f).toFloat()
         paintCircle?.style = Paint.Style.STROKE
+
+
         paintLine1?.color = Color.parseColor("#7FCF111A")
         paintLine1?.strokeWidth = PxUtils.dp2px(context, 11f).toFloat()
         paintLine1?.style = Paint.Style.FILL
@@ -106,9 +115,36 @@ class MyTaskProgressBar : View {
         var lineTotalWidth = viewWidth - PxUtils.dp2px(context, 177f).toFloat()
         //平均每段线段的长度
         var lineWidth = lineTotalWidth / 3
-        //中间总长度
-        var lineMiddleWidth =  viewWidth - PxUtils.dp2px(context, 36f+61f).toFloat()
+        when(progressType){
+            0->{
+                drawType1(canvas,lineWidth)
+            }
+            1->{
+                drawType2(canvas,lineWidth)
+            }
+            2->{
+                drawType3(canvas,lineWidth)
+            }
+            else->{
+                drawType4(canvas,lineWidth)
+            }
+        }
+
+
+
+    }
+    private fun drawType1(canvas:Canvas,lineWidth:Float){
+        paintCircle?.style = Paint.Style.FILL
+        paintCircle?.color = Color.parseColor("#FF7201")
         //绘制第一个圆环
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat(),
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
         canvas?.drawCircle(
             PxUtils.dp2px(context, 18f).toFloat(),
             height / 2f,
@@ -141,47 +177,70 @@ class MyTaskProgressBar : View {
             height / 2f,
             paintLine1
         )
-        if(progress<=0.25){
+        if (progress <= 0.25) {
             //进度=lineWidth*progress/25
 
             //绘制进度条
             canvas?.drawLine(
                 PxUtils.dp2px(context, 36f).toFloat(),
                 height / 2f,
-                (PxUtils.dp2px(context, 36f).toFloat()+lineWidth*progress/0.25).toFloat(),
+                (PxUtils.dp2px(context, 36f).toFloat() + lineWidth * progress / 0.25).toFloat(),
                 height / 2f,
                 paintLine2
             )
-        }else if(progress>0.25&&progress<=0.5){
+            //绘制进度图片
+            drawBitmap(
+                canvas,
+                (PxUtils.dp2px(context, 36f).toFloat() + lineWidth * progress / 0.25).toFloat(),
+                height / 2f
+            )
+        } else if (progress > 0.25 && progress <= 0.5) {
             //进度=lineWidth+36dp+lineWidth*(progress-0.25)/0.25
             canvas?.drawLine(
                 PxUtils.dp2px(context, 36f).toFloat(),
                 height / 2f,
-                (PxUtils.dp2px(context, 36f).toFloat()*2+lineWidth+lineWidth*(progress-0.25)/0.25).toFloat(),
+                (PxUtils.dp2px(context, 36f)
+                    .toFloat() * 2 + lineWidth + lineWidth * (progress - 0.25) / 0.25).toFloat(),
                 height / 2f,
                 paintLine2
             )
-        }else{
+            //绘制进度图片
+            drawBitmap(
+                canvas,
+                (PxUtils.dp2px(context, 36f)
+                    .toFloat() * 2 + lineWidth + lineWidth * (progress - 0.25) / 0.25).toFloat(),
+                height / 2f
+            )
+        } else {
             //进度=lineWidth+36dp+lineWidth+44+lineWidth*(progress-0.5)/0.5
             canvas?.drawLine(
                 PxUtils.dp2px(context, 36f).toFloat(),
                 height / 2f,
 
-                (PxUtils.dp2px(context, 36f).toFloat()*2
-                        +lineWidth*2+(PxUtils.dp2px(context, 44f).toFloat()+lineWidth*(progress-0.5)/0.5)).toFloat(),
+                (PxUtils.dp2px(context, 36f).toFloat() * 2
+                        + lineWidth * 2 + (PxUtils.dp2px(context, 44f)
+                    .toFloat() + lineWidth * (progress - 0.5) / 0.5)).toFloat(),
                 height / 2f,
                 paintLine2
             )
+            drawBitmap(
+                canvas, (PxUtils.dp2px(context, 36f).toFloat() * 2
+                        + lineWidth * 2 + (PxUtils.dp2px(context, 44f)
+                    .toFloat() + lineWidth * (progress - 0.5) / 0.5)).toFloat(), height / 2f
+            )
         }
-        //绘制进度条
-//        canvas?.drawLine(
-//            PxUtils.dp2px(context, 36f).toFloat(),
-//            height / 2f,
-//            PxUtils.dp2px(context, 36f).toFloat()+progress*lineMiddleWidth,
-//            height / 2f,
-//            paintLine2
-//        )
 //        //绘制第二个圆环
+        paintCircle?.style = Paint.Style.FILL
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() + lineWidth,
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
         canvas?.drawCircle(
             PxUtils.dp2px(context, 18f).toFloat() + PxUtils.dp2px(context, 36f)
                 .toFloat() + lineWidth,
@@ -199,6 +258,17 @@ class MyTaskProgressBar : View {
         )
 
 //        //绘制第三个圆环
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 22f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 2,
+            height / 2f,
+            PxUtils.dp2px(context, 22f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
         canvas?.drawCircle(
             PxUtils.dp2px(context, 22f).toFloat() + PxUtils.dp2px(context, 36f)
                 .toFloat() * 2 + lineWidth * 2,
@@ -217,6 +287,17 @@ class MyTaskProgressBar : View {
 
 
 //        //绘制第四个圆环
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 30.5f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            PxUtils.dp2px(context, 30.5f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
         canvas?.drawCircle(
             PxUtils.dp2px(context, 30.5f).toFloat() + PxUtils.dp2px(context, 36f)
                 .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
@@ -233,12 +314,553 @@ class MyTaskProgressBar : View {
                 .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
             height / 2f
         )
-        //绘制进度图片
-        drawBitmap(canvas, lineMiddleWidth*progress, height / 2f)
-
-
     }
+    private fun drawType2(canvas: Canvas, lineWidth: Float){
+        paintCircle?.style = Paint.Style.FILL
+        paintCircle?.color = Color.parseColor("#FF7201")
+        //绘制第一个圆环
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat(),
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat(),
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText(canvas, "0元", PxUtils.dp2px(context, 18f).toFloat(), height / 2f)
+        //绘制第一条线段
+        canvas?.drawLine(
+            PxUtils.dp2px(context, 36f).toFloat(),
+            height / 2f,
+            PxUtils.dp2px(context, 36f).toFloat() + lineWidth,
+            height / 2f,
+            paintLine1
+        )
+        //        //绘制第二条线段
+        canvas?.drawLine(
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth,
+            height / 2f,
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth * 2,
+            height / 2f,
+            paintLine1
+        )
+        //        //绘制第三条线段
+        canvas?.drawLine(
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth * 2 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            paintLine1
+        )
+        if (progress <= 0.25) {
+            //进度=lineWidth*progress/25
 
+            //绘制进度条
+            canvas?.drawLine(
+                PxUtils.dp2px(context, 36f).toFloat(),
+                height / 2f,
+                (PxUtils.dp2px(context, 36f).toFloat() + lineWidth * progress / 0.25).toFloat(),
+                height / 2f,
+                paintLine2
+            )
+            //绘制进度图片
+            drawBitmap(
+                canvas,
+                (PxUtils.dp2px(context, 36f).toFloat() + lineWidth * progress / 0.25).toFloat(),
+                height / 2f
+            )
+        } else if (progress > 0.25 && progress <= 0.5) {
+            //进度=lineWidth+36dp+lineWidth*(progress-0.25)/0.25
+            canvas?.drawLine(
+                PxUtils.dp2px(context, 36f).toFloat(),
+                height / 2f,
+                (PxUtils.dp2px(context, 36f)
+                    .toFloat() * 2 + lineWidth + lineWidth * (progress - 0.25) / 0.25).toFloat(),
+                height / 2f,
+                paintLine2
+            )
+            //绘制进度图片
+            drawBitmap(
+                canvas,
+                (PxUtils.dp2px(context, 36f)
+                    .toFloat() * 2 + lineWidth + lineWidth * (progress - 0.25) / 0.25).toFloat(),
+                height / 2f
+            )
+        } else {
+            //进度=lineWidth+36dp+lineWidth+44+lineWidth*(progress-0.5)/0.5
+            canvas?.drawLine(
+                PxUtils.dp2px(context, 36f).toFloat(),
+                height / 2f,
+
+                (PxUtils.dp2px(context, 36f).toFloat() * 2
+                        + lineWidth * 2 + (PxUtils.dp2px(context, 44f)
+                    .toFloat() + lineWidth * (progress - 0.5) / 0.5)).toFloat(),
+                height / 2f,
+                paintLine2
+            )
+            drawBitmap(
+                canvas, (PxUtils.dp2px(context, 36f).toFloat() * 2
+                        + lineWidth * 2 + (PxUtils.dp2px(context, 44f)
+                    .toFloat() + lineWidth * (progress - 0.5) / 0.5)).toFloat(), height / 2f
+            )
+        }
+//        //绘制第二个圆环
+        paintCircle?.style = Paint.Style.FILL
+        paintCircle?.color = Color.parseColor("#FF7201")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() + lineWidth,
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() + lineWidth,
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText(
+            canvas,
+            "25元",
+            PxUtils.dp2px(context, 18f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() + lineWidth,
+            height / 2f
+        )
+
+//        //绘制第三个圆环
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 22f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 2,
+            height / 2f,
+            PxUtils.dp2px(context, 22f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 22f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 2,
+            height / 2f,
+            PxUtils.dp2px(context, 22f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText(
+            canvas,
+            "50元",
+            PxUtils.dp2px(context, 22f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 2,
+            height / 2f
+        )
+
+
+//        //绘制第四个圆环
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 30.5f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            PxUtils.dp2px(context, 30.5f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 30.5f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            PxUtils.dp2px(context, 30.5f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText2(
+            canvas,
+            "100元",
+            "现金红包",
+            PxUtils.dp2px(context, 30.5f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f
+        )
+    }
+    private fun drawType3(canvas: Canvas, lineWidth: Float) {
+        paintCircle?.style = Paint.Style.FILL
+        paintCircle?.color = Color.parseColor("#FF7201")
+        //绘制第一个圆环
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat(),
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat(),
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText(canvas, "0元", PxUtils.dp2px(context, 18f).toFloat(), height / 2f)
+        //绘制第一条线段
+        canvas?.drawLine(
+            PxUtils.dp2px(context, 36f).toFloat(),
+            height / 2f,
+            PxUtils.dp2px(context, 36f).toFloat() + lineWidth,
+            height / 2f,
+            paintLine1
+        )
+        //        //绘制第二条线段
+        canvas?.drawLine(
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth,
+            height / 2f,
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth * 2,
+            height / 2f,
+            paintLine1
+        )
+        //        //绘制第三条线段
+        canvas?.drawLine(
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth * 2 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            paintLine1
+        )
+        if (progress <= 0.25) {
+            //进度=lineWidth*progress/25
+
+            //绘制进度条
+            canvas?.drawLine(
+                PxUtils.dp2px(context, 36f).toFloat(),
+                height / 2f,
+                (PxUtils.dp2px(context, 36f).toFloat() + lineWidth * progress / 0.25).toFloat(),
+                height / 2f,
+                paintLine2
+            )
+            //绘制进度图片
+            drawBitmap(
+                canvas,
+                (PxUtils.dp2px(context, 36f).toFloat() + lineWidth * progress / 0.25).toFloat(),
+                height / 2f
+            )
+        } else if (progress > 0.25 && progress <= 0.5) {
+            //进度=lineWidth+36dp+lineWidth*(progress-0.25)/0.25
+            canvas?.drawLine(
+                PxUtils.dp2px(context, 36f).toFloat(),
+                height / 2f,
+                (PxUtils.dp2px(context, 36f)
+                    .toFloat() * 2 + lineWidth + lineWidth * (progress - 0.25) / 0.25).toFloat(),
+                height / 2f,
+                paintLine2
+            )
+            //绘制进度图片
+            drawBitmap(
+                canvas,
+                (PxUtils.dp2px(context, 36f)
+                    .toFloat() * 2 + lineWidth + lineWidth * (progress - 0.25) / 0.25).toFloat(),
+                height / 2f
+            )
+        } else {
+            //进度=lineWidth+36dp+lineWidth+44+lineWidth*(progress-0.5)/0.5
+            canvas?.drawLine(
+                PxUtils.dp2px(context, 36f).toFloat(),
+                height / 2f,
+
+                (PxUtils.dp2px(context, 36f).toFloat() * 2
+                        + lineWidth * 2 + (PxUtils.dp2px(context, 44f)
+                    .toFloat() + lineWidth * (progress - 0.5) / 0.5)).toFloat(),
+                height / 2f,
+                paintLine2
+            )
+            drawBitmap(
+                canvas, (PxUtils.dp2px(context, 36f).toFloat() * 2
+                        + lineWidth * 2 + (PxUtils.dp2px(context, 44f)
+                    .toFloat() + lineWidth * (progress - 0.5) / 0.5)).toFloat(), height / 2f
+            )
+        }
+//        //绘制第二个圆环
+        paintCircle?.style = Paint.Style.FILL
+        paintCircle?.color = Color.parseColor("#FF7201")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() + lineWidth,
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() + lineWidth,
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText(
+            canvas,
+            "25元",
+            PxUtils.dp2px(context, 18f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() + lineWidth,
+            height / 2f
+        )
+
+//        //绘制第三个圆环
+        paintCircle?.style = Paint.Style.FILL
+        paintCircle?.color = Color.parseColor("#FF7201")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 22f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 2,
+            height / 2f,
+            PxUtils.dp2px(context, 22f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 22f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 2,
+            height / 2f,
+            PxUtils.dp2px(context, 22f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText(
+            canvas,
+            "50元",
+            PxUtils.dp2px(context, 22f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 2,
+            height / 2f
+        )
+
+
+//        //绘制第四个圆环
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 30.5f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            PxUtils.dp2px(context, 30.5f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 30.5f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            PxUtils.dp2px(context, 30.5f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText2(
+            canvas,
+            "100元",
+            "现金红包",
+            PxUtils.dp2px(context, 30.5f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f
+        )
+    }
+    private fun drawType4(canvas: Canvas, lineWidth: Float){
+        paintCircle?.style = Paint.Style.FILL
+        paintCircle?.color = Color.parseColor("#FF7201")
+        //绘制第一个圆环
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat(),
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat(),
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText(canvas, "0元", PxUtils.dp2px(context, 18f).toFloat(), height / 2f)
+        //绘制第一条线段
+        canvas?.drawLine(
+            PxUtils.dp2px(context, 36f).toFloat(),
+            height / 2f,
+            PxUtils.dp2px(context, 36f).toFloat() + lineWidth,
+            height / 2f,
+            paintLine1
+        )
+        //        //绘制第二条线段
+        canvas?.drawLine(
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth,
+            height / 2f,
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth * 2,
+            height / 2f,
+            paintLine1
+        )
+        //        //绘制第三条线段
+        canvas?.drawLine(
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth * 2 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            PxUtils.dp2px(context, 36f).toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            paintLine1
+        )
+        if (progress <= 0.25) {
+            //进度=lineWidth*progress/25
+
+            //绘制进度条
+            canvas?.drawLine(
+                PxUtils.dp2px(context, 36f).toFloat(),
+                height / 2f,
+                (PxUtils.dp2px(context, 36f).toFloat() + lineWidth * progress / 0.25).toFloat(),
+                height / 2f,
+                paintLine2
+            )
+            //绘制进度图片
+            drawBitmap(
+                canvas,
+                (PxUtils.dp2px(context, 36f).toFloat() + lineWidth * progress / 0.25).toFloat(),
+                height / 2f
+            )
+        } else if (progress > 0.25 && progress <= 0.5) {
+            //进度=lineWidth+36dp+lineWidth*(progress-0.25)/0.25
+            canvas?.drawLine(
+                PxUtils.dp2px(context, 36f).toFloat(),
+                height / 2f,
+                (PxUtils.dp2px(context, 36f)
+                    .toFloat() * 2 + lineWidth + lineWidth * (progress - 0.25) / 0.25).toFloat(),
+                height / 2f,
+                paintLine2
+            )
+            //绘制进度图片
+            drawBitmap(
+                canvas,
+                (PxUtils.dp2px(context, 36f)
+                    .toFloat() * 2 + lineWidth + lineWidth * (progress - 0.25) / 0.25).toFloat(),
+                height / 2f
+            )
+        } else {
+            //进度=lineWidth+36dp+lineWidth+44+lineWidth*(progress-0.5)/0.5
+            canvas?.drawLine(
+                PxUtils.dp2px(context, 36f).toFloat(),
+                height / 2f,
+
+                (PxUtils.dp2px(context, 36f).toFloat() * 2
+                        + lineWidth * 2 + (PxUtils.dp2px(context, 44f)
+                    .toFloat() + lineWidth * (progress - 0.5) / 0.5)).toFloat(),
+                height / 2f,
+                paintLine2
+            )
+            drawBitmap(
+                canvas, (PxUtils.dp2px(context, 36f).toFloat() * 2
+                        + lineWidth * 2 + (PxUtils.dp2px(context, 44f)
+                    .toFloat() + lineWidth * (progress - 0.5) / 0.5)).toFloat(), height / 2f
+            )
+        }
+//        //绘制第二个圆环
+        paintCircle?.style = Paint.Style.FILL
+        paintCircle?.color = Color.parseColor("#FF7201")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() + lineWidth,
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 18f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() + lineWidth,
+            height / 2f,
+            PxUtils.dp2px(context, 18f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText(
+            canvas,
+            "25元",
+            PxUtils.dp2px(context, 18f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() + lineWidth,
+            height / 2f
+        )
+
+//        //绘制第三个圆环
+        paintCircle?.style = Paint.Style.FILL
+        paintCircle?.color = Color.parseColor("#FF7201")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 22f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 2,
+            height / 2f,
+            PxUtils.dp2px(context, 22f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 22f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 2,
+            height / 2f,
+            PxUtils.dp2px(context, 22f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText(
+            canvas,
+            "50元",
+            PxUtils.dp2px(context, 22f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 2,
+            height / 2f
+        )
+
+
+//        //绘制第四个圆环
+        paintCircle?.style = Paint.Style.FILL
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 30.5f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            PxUtils.dp2px(context, 30.5f).toFloat(),
+            paintCircle
+        )
+        paintCircle?.style = Paint.Style.STROKE
+        paintCircle?.color = Color.parseColor("#FFF35F")
+        canvas?.drawCircle(
+            PxUtils.dp2px(context, 30.5f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f,
+            PxUtils.dp2px(context, 30.5f).toFloat(),
+            paintCircle
+        )
+        //绘制文本
+        drawText2(
+            canvas,
+            "100元",
+            "现金红包",
+            PxUtils.dp2px(context, 30.5f).toFloat() + PxUtils.dp2px(context, 36f)
+                .toFloat() * 2 + lineWidth * 3 + PxUtils.dp2px(context, 44f),
+            height / 2f
+        )
+    }
     /**
      * @description 绘制文本
      * @date: 2021/3/4 17:24
@@ -275,12 +897,29 @@ class MyTaskProgressBar : View {
      * @author: wei.yang
      */
     private fun drawBitmap(canvas: Canvas, processWidth: Float, centerY: Float) {
-
         //进度图片
         val bitmap =
             BitmapFactory.decodeResource(context.resources, R.drawable.bg_bragaining_progress_money)
-        val l = processWidth-bitmap.width/2+PxUtils.dp2px(context,36f)
+        val l = processWidth - bitmap.width / 2
         val t = centerY - bitmap.height - PxUtils.dp2px(context, 9.9f)
         canvas.drawBitmap(bitmap, l, t, paintBitmap)
+        //在图片上绘制文本
+        drawText2(canvas,"99.99","元",processWidth,t+bitmap.height/2)
+
+    }
+
+    fun requestProgressBar(bar: Float) {
+        this.progress = bar
+        var progress = bar
+        if (progress < 0.25) {
+            progressType = 0
+        } else if (progress >= 0.25 && progress < 0.5) {
+            progressType = 1
+        } else if (progress >= 0.5 && progress < 1) {
+            progressType = 2
+        } else {
+            progressType = 3
+        }
+        invalidate()
     }
 }
