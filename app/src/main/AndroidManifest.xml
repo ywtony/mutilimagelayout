@@ -46,6 +46,9 @@
         <activity
             android:name=".ui.TaskProgressBarActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.CircleProgressActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

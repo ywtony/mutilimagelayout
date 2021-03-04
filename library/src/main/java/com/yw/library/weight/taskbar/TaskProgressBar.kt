@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
 import android.view.Gravity
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -44,7 +45,7 @@ class TaskProgressBar : RelativeLayout {
     private var linearFour: LinearLayout? = null
     private var tvTop: TextView? = null
     private var tvBottom: TextView? = null
-
+    private var bar:Float =0f
     /**
      * 0:<25%
      * 1:>2=25%<50%
@@ -89,9 +90,12 @@ class TaskProgressBar : RelativeLayout {
             PxUtils.dp2px(context, 36f), PxUtils.dp2px(context, 61f)
         )
         tvOne = createTextView(
-            PxUtils.dp2px(context, 36f), PxUtils.dp2px(context, 36f), R.drawable.bg_barg_one_progress,
+            PxUtils.dp2px(context, 36f),
+            PxUtils.dp2px(context, 36f),
+            R.drawable.bg_barg_one_progress,
             ALIGN_PARENT_START
-            , 0
+            ,
+            0
         )
         tvOne?.textSize = 12f
         tvOne?.text = "0%"
@@ -99,9 +103,12 @@ class TaskProgressBar : RelativeLayout {
             tvOne?.setTextColor(context.getColor(R.color.color_FFFABE))
         }
         tvTwo = createTextView(
-            PxUtils.dp2px(context, 36f), PxUtils.dp2px(context, 36f), R.drawable.bg_barg_one_progress2,
+            PxUtils.dp2px(context, 36f),
+            PxUtils.dp2px(context, 36f),
+            R.drawable.bg_barg_one_progress2,
             CENTER_VERTICAL
-            , (0.25f * viewWidth).toInt()
+            ,
+            (0.25f * viewWidth).toInt()
         )
         tvTwo?.text = "25%"
         tvTwo?.textSize = 12f
@@ -237,6 +244,7 @@ class TaskProgressBar : RelativeLayout {
         removeAllViews()
         addView(progressBar)
         addView(progressBar2)
+        addView(createImageView())
         addView(tvOne)
         addView(tvTwo)
         addView(tvThree)
@@ -340,12 +348,29 @@ class TaskProgressBar : RelativeLayout {
     }
 
     /**
+     * @description 创建一个ImageView
+     * @date: 2021/3/4 14:58
+     * @author: wei.yang
+     */
+    private fun createImageView(): ImageView {
+        val imageView = ImageView(context)
+        val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        params.bottomMargin = PxUtils.dp2px(context,5f)
+        params.marginStart = (progressBarWidth * bar).toInt()
+        progressBar?.id?.let { params.addRule(ABOVE, it) }
+        imageView.layoutParams = params
+        imageView.setImageResource(R.drawable.bg_bragaining_progress_money)
+        return imageView
+    }
+
+    /**
      * @description 更新进度条
      * @date: 2021/3/1 19:32
      * @author: wei.yang
      * @param bar 服务端返回的百分比，此处有一点需要特别注意：由于UI设计的原因进度条没法按照正常的比分比来加载，所以需要针对bar做一系列的逻辑判断
      */
     fun requestProgressBar(bar: Float) {
+        this.bar = bar
         var progress = bar
         if (bar in 0.50..0.75) {
             progress = 0.75f

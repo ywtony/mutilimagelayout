@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         list.add(ClassBean("自定义背景动画", ProgressLoopBackgroundActivity::class.java.name))
         list.add(ClassBean("自定义翻卡效果", TrunTheCellAlphaViewActivity::class.java.name))
         list.add(ClassBean("砍价进度条", TaskProgressBarActivity::class.java.name))
+        list.add(ClassBean("圆形进度条", CircleProgressActivity::class.java.name))
 
         val adapter = MainAdapter(this, list,
             BaseListAdapter.OnListItemClickListener<ClassBean> { data, position ->
