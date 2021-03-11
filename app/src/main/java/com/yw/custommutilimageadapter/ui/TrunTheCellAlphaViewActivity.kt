@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.yw.custommutilimageadapter.R
+import com.yw.custommutilimageadapter.utils.RoundImageDrawable
 import com.yw.library.utils.BitmapUtils
 import com.yw.library.weight.ttcav.AlphaView
 import kotlinx.android.synthetic.main.activity_custom_mutil_imag_view.*
@@ -51,6 +52,10 @@ class TrunTheCellAlphaViewActivity : FragmentActivity() {
         val bitmap1 = BitmapFactory.decodeResource(resources,R.mipmap.big_girl)
         val bitmap2 = BitmapFactory.decodeResource(resources,R.mipmap.fengjing1)
         clipBitmapViewGroup.setAdapter(bitmap1,bitmap2,30,2f,R.layout.item_clip_bitmap_viewgroup)
+//        clipBitmapViewGroup.setAdapter(
+//            BitmapUtils().drawableToBitmap(RoundImageDrawable(bitmap1)),
+//            BitmapUtils().drawableToBitmap(RoundImageDrawable(bitmap2)),
+//            30,2f,R.layout.item_clip_bitmap_viewgroup)
     }
 
 

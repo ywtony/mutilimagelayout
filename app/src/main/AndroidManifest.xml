@@ -49,6 +49,12 @@
         <activity
             android:name=".ui.CircleProgressActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ZXingDemoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SpeedBarViewActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

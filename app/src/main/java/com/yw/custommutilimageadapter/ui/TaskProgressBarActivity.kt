@@ -26,7 +26,7 @@ class TaskProgressBarActivity : FragmentActivity() {
         setContentView(R.layout.activity_task_progress_bar)
 //        taskBar.requestProgressBar(0.9f)
         btnStart.setOnClickListener {
-            taskBar.requestProgressBar(1f)
+            taskBar.requestProgressBar(1f,100,0.25f*100)
         }
     }
 }

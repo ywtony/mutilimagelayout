@@ -4,10 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Paint
+import android.graphics.*
 import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
@@ -15,10 +12,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.yw.library.R
 import com.yw.library.utils.BitmapUtils
 import com.yw.library.utils.PxUtils
-import com.yw.library.utils.PxUtils.dp2px
+
 
 /**
  *
@@ -200,6 +196,36 @@ class ClipBitmapViewGroup(context: Context?, attrs: AttributeSet?) : ViewGroup(c
     fun dp2px(dpValue: Float): Int {
         val scale = PxUtils.getScreenDensity(context)
         return (dpValue * scale + 0.5).toInt()
+    }
+
+    override fun dispatchDraw(canvas: Canvas) {
+        val path = Path()
+        path.fillType = Path.FillType.WINDING
+        //path划出一个圆角矩形，容纳图片,图片矩形区域设置比红色外框小，否则会覆盖住外框，随意控制
+        path.addRoundRect(
+            RectF(10f, 10f, measuredWidth.toFloat()-10f, measuredHeight.toFloat()-10f),
+            PxUtils.dp2px(context, 12f).toFloat(),
+            PxUtils.dp2px(context, 12f).toFloat(),
+            Path.Direction.CW
+        )
+        val paint = Paint()
+        paint.strokeJoin = Paint.Join.ROUND
+        paint.isAntiAlias = true
+        paint.color = Color.parseColor("#fafafa")
+        //设置外框的矩形区域，不可再init()初始化，构造器中width和height还未确定，可在onMesure()中获取并设置
+        val rectF = RectF(0f, 0f, width.toFloat(), height.toFloat())
+        //画出白色色外框圆角矩形
+        canvas.drawRoundRect(rectF,
+            PxUtils.dp2px(context, 12f).toFloat(),
+            PxUtils.dp2px(context, 12f).toFloat(),
+            paint)
+        //将canvas裁剪到path设定的区域，往后的绘制都只能在此区域中，
+        if (Build.VERSION.SDK_INT >= 28) {
+            canvas.clipPath(path)
+        } else {
+            canvas.clipPath(path, Region.Op.REPLACE)
+        }
+        super.dispatchDraw(canvas)
     }
 
 }

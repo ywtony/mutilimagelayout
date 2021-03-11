@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         list.add(ClassBean("自定义翻卡效果", TrunTheCellAlphaViewActivity::class.java.name))
         list.add(ClassBean("砍价进度条", TaskProgressBarActivity::class.java.name))
         list.add(ClassBean("圆形进度条", CircleProgressActivity::class.java.name))
+        list.add(ClassBean("二维码识别", ZXingDemoActivity::class.java.name))
+        list.add(ClassBean("快慢速TabView", SpeedBarViewActivity::class.java.name))
 
         val adapter = MainAdapter(this, list,
             BaseListAdapter.OnListItemClickListener<ClassBean> { data, position ->

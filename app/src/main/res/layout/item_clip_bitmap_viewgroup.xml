@@ -17,5 +17,5 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:visibility="visible"
-        android:src="@mipmap/fengjing1" />
+        />
 </FrameLayout>

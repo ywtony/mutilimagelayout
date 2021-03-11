@@ -1,6 +1,10 @@
 package com.yw.library.utils
 
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 
 /**
  *
@@ -40,4 +44,29 @@ class BitmapUtils {
 
         return list
     }
+
+    /**
+     * Drawable 转换成 Bitmap
+     * @param drawable
+     * @return
+     */
+    fun drawableToBitmap(drawable: Drawable): Bitmap {
+        if (drawable is BitmapDrawable) {
+            return drawable.bitmap
+        }
+        var bitmap: Bitmap?
+        val width = Math.max(drawable.intrinsicWidth, 2)
+        val height = Math.max(drawable.intrinsicHeight, 2)
+        try {
+            bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            drawable.setBounds(0, 0, canvas.width, canvas.height)
+            drawable.draw(canvas)
+        } catch (e: Throwable) {
+            e.printStackTrace()
+            bitmap = null
+        }
+        return bitmap!!
+    }
+
 }
