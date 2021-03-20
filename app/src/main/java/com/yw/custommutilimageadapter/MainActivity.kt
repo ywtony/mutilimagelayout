@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         list.add(ClassBean("圆形进度条", CircleProgressActivity::class.java.name))
         list.add(ClassBean("二维码识别", ZXingDemoActivity::class.java.name))
         list.add(ClassBean("快慢速TabView", SpeedBarViewActivity::class.java.name))
+        list.add(ClassBean("半透明遮罩", HalfAlphaOpacityActivity::class.java.name))
+        list.add(ClassBean("防抖音视频进度加载进度条", TiktokVideoLoaddingViewActivity::class.java.name))
 
         val adapter = MainAdapter(this, list,
             BaseListAdapter.OnListItemClickListener<ClassBean> { data, position ->

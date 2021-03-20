@@ -55,6 +55,12 @@
         <activity
             android:name=".ui.SpeedBarViewActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.HalfAlphaOpacityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TiktokVideoLoaddingViewActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
