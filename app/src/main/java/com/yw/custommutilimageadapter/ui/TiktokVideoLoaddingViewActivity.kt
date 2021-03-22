@@ -23,6 +23,6 @@ class TiktokVideoLoaddingViewActivity  : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tiktok_video_loadding_view)
-        tiktokVideoLoaddingView.setTimePeriod(600)
+        tiktokVideoLoaddingView.setTimePeriod(20)
     }
 }

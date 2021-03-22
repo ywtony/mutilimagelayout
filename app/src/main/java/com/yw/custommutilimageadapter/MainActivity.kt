@@ -2,6 +2,8 @@ package com.yw.custommutilimageadapter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.SurfaceView
+import androidx.constraintlayout.utils.widget.MockView
 import com.yw.custommutilimageadapter.adapter.BaseListAdapter
 import com.yw.custommutilimageadapter.adapter.MainAdapter
 import com.yw.custommutilimageadapter.bean.ClassBean
@@ -46,6 +48,9 @@ class MainActivity : AppCompatActivity() {
                 ActivityUtils.startActivity(this@MainActivity, data.className)
             })
         listView.adapter = adapter
+
+        val surfaceView = SurfaceView(this@MainActivity)
+
     }
 
 

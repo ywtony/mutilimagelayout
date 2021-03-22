@@ -1,5 +1,9 @@
 package com.yw.library.weight
 
+import android.animation.Animator
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -79,7 +83,7 @@ class TiktokVideoLoaddingView(context: Context, attrs: AttributeSet?) : View(con
             }
         }
         mHandler?.sendEmptyMessageDelayed(1, mTimePeriod.toLong())
-//        mPaint.color = Color.parseColor("#ffffff")
+        mPaint.color = Color.parseColor("#ffffff")
     }
 
     /**
@@ -90,6 +94,7 @@ class TiktokVideoLoaddingView(context: Context, attrs: AttributeSet?) : View(con
         if (mTimePeriod > 0) {
             this.mTimePeriod = timePeriod
         }
+        startAnimationAlpha()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -161,7 +166,7 @@ class TiktokVideoLoaddingView(context: Context, attrs: AttributeSet?) : View(con
         //首先判断进度条的宽度是否大于view宽度
         if (mProgressWidth < mWidth) {
             //如果不大于，将进度条宽度增加10
-            mProgressWidth += 30 //注意执行此步骤是mProgressWidth值有可能大于view宽度；
+            mProgressWidth += 50 //注意执行此步骤是mProgressWidth值有可能大于view宽度；
 
         } else {
             //如果进度条宽度大于view宽度将进度条宽度设置为初始宽度
@@ -186,7 +191,7 @@ class TiktokVideoLoaddingView(context: Context, attrs: AttributeSet?) : View(con
         val color =
             Color.parseColor("#" + s + "ffffff")
         //给画笔设置颜色
-        mPaint.color = color
+//        mPaint.color = color
         //绘制线
         canvas?.drawLine(
             mWidth.toFloat() / 2 - mProgressWidth.toFloat() / 2,
@@ -198,4 +203,58 @@ class TiktokVideoLoaddingView(context: Context, attrs: AttributeSet?) : View(con
 
 
     }
+
+
+    /**
+     * @method  给指定的View设置动画，动画效果为改变其透明度
+     * @description
+     * @date: 2021/3/22 9:28
+     * @author: wei.yang
+     * @param view 指定的View
+     */
+    fun startAnimationAlpha() {
+        val alpha1 = ObjectAnimator.ofFloat(this, "alpha", 0.3f, 0.8f)
+        alpha1.duration = 300
+        alpha1.repeatCount  = ValueAnimator.INFINITE
+        val alph2 = ObjectAnimator.ofFloat(this, "alpha", 0.8f, 0f)
+        alph2.duration = 300
+        alph2.repeatCount  = ValueAnimator.INFINITE
+        alpha1.addListener(object:Animator.AnimatorListener{
+            override fun onAnimationRepeat(animation: Animator?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                alph2.start()
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+
+            }
+
+        })
+        alph2.addListener(object:Animator.AnimatorListener{
+            override fun onAnimationRepeat(animation: Animator?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                alpha1.start()
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+
+            }
+
+        })
+    }
+
 }
