@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.yw.custommutilimageadapter.R
 import com.yw.custommutilimageadapter.bean.FoldBean
 import com.yw.library.adapter.BaseFoldLayoutAdapter
@@ -36,12 +37,18 @@ class FoldAdapter : BaseFoldLayoutAdapter {
     }
 
     override fun getItem(index: Int, convertView: View?, parent: ViewGroup?): View? {
+        val bean = datas[index]
         var view: View? = null
         if (convertView == null) {
             view = LayoutInflater.from(context).inflate(R.layout.item_fold_view, null)
         }
         val ivGirl = view?.findViewById<CircleImageView>(R.id.ivGirl)
-        ivGirl?.setImageResource(datas[index].resId)
+//        ivGirl?.setImageResource(datas[index].resId)
+        if (bean?.type == 1 && (bean?.url?.startsWith("http") || bean?.url?.startsWith("https"))) {
+            Glide.with(context!!).load(bean?.url).into(ivGirl!!)
+        } else {
+            ivGirl?.setImageResource(datas[index].resId)
+        }
         return view
     }
 

@@ -13,7 +13,7 @@
             android:id="@+id/foldViewH"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:defaultChildMarginLeft="30"
+            app:defaultChildMarginLeft="10"
             app:directionMode="0" />
     </HorizontalScrollView>
     <!--布局纵向排列-->

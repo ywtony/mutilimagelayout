@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         val list = ArrayList<ClassBean>()
         list.add(ClassBean("不规则布局多图展示", CustomMutilImageViewActivity::class.java.name))
+        list.add(ClassBean("任意形状及方向的折叠View", FoldLayoutViewActivity::class.java.name))
         list.add(ClassBean("遮掩布局展示", FoldCardViewLayoutActivity::class.java.name))
         list.add(ClassBean("自定义ScrollView", MyScrollViewActivity::class.java.name))
         list.add(ClassBean("自定义EditText", EditTextActivity::class.java.name))
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         list.add(ClassBean("快慢速TabView", SpeedBarViewActivity::class.java.name))
         list.add(ClassBean("半透明遮罩", HalfAlphaOpacityActivity::class.java.name))
         list.add(ClassBean("防抖音视频进度加载进度条", TiktokVideoLoaddingViewActivity::class.java.name))
+        list.add(ClassBean("下载视频文件进度", DownLoadViewActivity::class.java.name))
 
         val adapter = MainAdapter(this, list,
             BaseListAdapter.OnListItemClickListener<ClassBean> { data, position ->

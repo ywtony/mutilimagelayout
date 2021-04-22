@@ -6,6 +6,6 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivGirl"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
 </LinearLayout>

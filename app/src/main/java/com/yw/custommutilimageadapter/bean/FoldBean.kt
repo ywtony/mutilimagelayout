@@ -14,6 +14,18 @@ package com.yw.custommutilimageadapter.bean
  * @Version:        1.0
  */
 class FoldBean(
-    var resId:Int=0
+    /**
+     * 1.网络图片 2.本地资源
+     */
+    var type: Int=1,
+    /**
+     * 本地资源id
+     */
+    var resId: Int = 0,
+    /**
+     * 网络图片资源路径
+     */
+    var url: String=""
+
 ) {
 }
