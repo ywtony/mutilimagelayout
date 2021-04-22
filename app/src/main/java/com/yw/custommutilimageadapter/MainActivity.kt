@@ -3,6 +3,9 @@ package com.yw.custommutilimageadapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.SurfaceView
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.constraintlayout.utils.widget.MockView
 import com.yw.custommutilimageadapter.adapter.BaseListAdapter
 import com.yw.custommutilimageadapter.adapter.MainAdapter
@@ -45,14 +48,20 @@ class MainActivity : AppCompatActivity() {
         list.add(ClassBean("防抖音视频进度加载进度条", TiktokVideoLoaddingViewActivity::class.java.name))
         list.add(ClassBean("下载视频文件进度", DownLoadViewActivity::class.java.name))
 
+
         val adapter = MainAdapter(this, list,
             BaseListAdapter.OnListItemClickListener<ClassBean> { data, position ->
                 ActivityUtils.startActivity(this@MainActivity, data.className)
             })
         listView.adapter = adapter
-
-        val surfaceView = SurfaceView(this@MainActivity)
-
+        /**
+         * 设置一个可拖动的View
+         */
+        dragView.setPosition(100,100,100,100)
+        dragView.setDefaultViewResource(R.drawable.girl4)
+        dragView.setOnClickListener {
+            Toast.makeText(this@MainActivity, "可以", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
