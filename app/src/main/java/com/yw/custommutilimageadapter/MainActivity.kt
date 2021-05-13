@@ -2,11 +2,13 @@ package com.yw.custommutilimageadapter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.SurfaceView
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.constraintlayout.utils.widget.MockView
+import com.airbnb.lottie.LottieAnimationView
 import com.yw.custommutilimageadapter.adapter.BaseListAdapter
 import com.yw.custommutilimageadapter.adapter.MainAdapter
 import com.yw.custommutilimageadapter.bean.ClassBean
@@ -47,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         list.add(ClassBean("半透明遮罩", HalfAlphaOpacityActivity::class.java.name))
         list.add(ClassBean("防抖音视频进度加载进度条", TiktokVideoLoaddingViewActivity::class.java.name))
         list.add(ClassBean("下载视频文件进度", DownLoadViewActivity::class.java.name))
+        list.add(ClassBean("商品价格显示", GoodsPriceActivity::class.java.name))
 
 
         val adapter = MainAdapter(this, list,
@@ -57,8 +60,9 @@ class MainActivity : AppCompatActivity() {
         /**
          * 设置一个可拖动的View
          */
-        dragView.setPosition(100,100,100,100)
-        dragView.setDefaultViewResource(R.drawable.girl4)
+//        dragView.setDefaultViewResource(R.drawable.girl4)
+        val view = LayoutInflater.from(this).inflate(R.layout.drag_json_child_layout,null) as LottieAnimationView
+        dragView.setAnimationJson(view)
         dragView.setOnClickListener {
             Toast.makeText(this@MainActivity, "可以", Toast.LENGTH_SHORT).show()
         }

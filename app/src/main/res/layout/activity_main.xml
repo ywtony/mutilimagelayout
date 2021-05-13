@@ -14,6 +14,15 @@
     <com.yw.library.drag.DragView
         android:id="@+id/dragView"
         android:layout_width="60dp"
-
         android:layout_height="60dp" />
+<!--    <com.airbnb.lottie.LottieAnimationView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--        android:id="@+id/lottie_likeanim"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="80dp"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_fileName="data.json"-->
+<!--        app:lottie_imageAssetsFolder="images"-->
+<!--        app:lottie_scale="0.5"-->
+<!--        app:lottie_loop="true" />-->
 </FrameLayout>

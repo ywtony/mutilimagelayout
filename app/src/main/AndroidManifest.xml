@@ -85,6 +85,9 @@
         <activity
             android:name=".ui.DownLoadViewActivity"
             android:label="下载视频" />
+        <activity
+            android:name=".ui.GoodsPriceActivity"
+            android:label="商品价格显示" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

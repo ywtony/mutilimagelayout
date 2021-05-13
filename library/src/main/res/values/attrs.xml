@@ -18,6 +18,13 @@
         <attr name="sliderChildBg" format="color|reference" />
         <attr name="sliderWidth" format="dimension" />
     </declare-styleable>
+<!--    价格插件-->
+    <declare-styleable name="price">
+        <attr name="priceColor" format="reference|color" />
+        <attr name="priceRMB" format="integer"/>
+        <attr name="priceEndSize" format="integer" />
+        <attr name="priceStartSize" format="integer" />
+    </declare-styleable>
     <declare-styleable name="blur">
         <attr name="blurAlphaColor" format="reference|color" />
         <attr name="blurAlpha" format="integer" />

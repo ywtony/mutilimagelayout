@@ -51,13 +51,17 @@ class DragView : FrameLayout {
             FrameLayout.LayoutParams.MATCH_PARENT,
             FrameLayout.LayoutParams.MATCH_PARENT
         )
-        val params = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.MATCH_PARENT,
-            FrameLayout.LayoutParams.MATCH_PARENT
-        )
         imagView.scaleType = ImageView.ScaleType.CENTER_CROP
         imagView.setImageResource(resId)
         addView(imagView)
+    }
+
+    /**
+     * 设置View-》此处设置特殊的json动画
+     */
+    fun setAnimationJson(view:View){
+        removeAllViews()
+        addView(view)
     }
 
     fun setContentView(view: View) {
@@ -99,7 +103,7 @@ class DragView : FrameLayout {
                     b = screenHeight.toFloat()
                     t = b - this.height
                 }
-                this.setRelativeViewLocation(this,l.toInt(), t.toInt(), r.toInt(), b.toInt())
+//                this.setRelativeViewLocation(this,l.toInt(), t.toInt(), r.toInt(), b.toInt())
                 this.layout(l.toInt(), t.toInt(), r.toInt(), b.toInt())
                 Log.i("DragView", "Position：$l, $t, $r, $b");
                 lastX = event.rawX
