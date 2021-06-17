@@ -50,7 +50,11 @@ class MainActivity : AppCompatActivity() {
         list.add(ClassBean("防抖音视频进度加载进度条", TiktokVideoLoaddingViewActivity::class.java.name))
         list.add(ClassBean("下载视频文件进度", DownLoadViewActivity::class.java.name))
         list.add(ClassBean("商品价格显示", GoodsPriceActivity::class.java.name))
-
+        list.add(ClassBean("标签View", TagPaddingViewActivity::class.java.name))
+        list.add(ClassBean("自定义Shape", CustomShapeDrawableActivity::class.java.name))
+        list.add(ClassBean("属性动画", TransAnimitActivity::class.java.name))
+        list.add(ClassBean("WebRTC测试", WebRTCActivity::class.java.name))
+        list.add(ClassBean("改变TextView部分字体 颜色", TextViewPartTextColorActivity::class.java.name))
 
         val adapter = MainAdapter(this, list,
             BaseListAdapter.OnListItemClickListener<ClassBean> { data, position ->
@@ -61,7 +65,8 @@ class MainActivity : AppCompatActivity() {
          * 设置一个可拖动的View
          */
 //        dragView.setDefaultViewResource(R.drawable.girl4)
-        val view = LayoutInflater.from(this).inflate(R.layout.drag_json_child_layout,null) as LottieAnimationView
+        val view = LayoutInflater.from(this)
+            .inflate(R.layout.drag_json_child_layout, null) as LottieAnimationView
         dragView.setAnimationJson(view)
         dragView.setOnClickListener {
             Toast.makeText(this@MainActivity, "可以", Toast.LENGTH_SHORT).show()
