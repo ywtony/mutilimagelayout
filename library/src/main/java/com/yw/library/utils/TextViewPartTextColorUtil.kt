@@ -84,8 +84,6 @@ object TextViewPartTextColorUtil {
                 )
             }
         }
-
-
         view.text = spannableStringBuilder
     }
 

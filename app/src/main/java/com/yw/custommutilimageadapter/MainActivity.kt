@@ -55,6 +55,8 @@ class MainActivity : AppCompatActivity() {
         list.add(ClassBean("属性动画", TransAnimitActivity::class.java.name))
         list.add(ClassBean("WebRTC测试", WebRTCActivity::class.java.name))
         list.add(ClassBean("改变TextView部分字体 颜色", TextViewPartTextColorActivity::class.java.name))
+        list.add(ClassBean("可两个图标切换的ImageView", SwitchImageViewActivity::class.java.name))
+        list.add(ClassBean("进度条动画", ProgressBarLoopBackgroundActivity::class.java.name))
 
         val adapter = MainAdapter(this, list,
             BaseListAdapter.OnListItemClickListener<ClassBean> { data, position ->

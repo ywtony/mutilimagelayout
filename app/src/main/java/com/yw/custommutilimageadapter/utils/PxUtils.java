@@ -20,6 +20,7 @@ public class PxUtils {
      * @return int
      */
     public static int getScreenWidth(@NonNull Context context) {
+        String str;
         return context.getResources().getDisplayMetrics().widthPixels;
     }
 

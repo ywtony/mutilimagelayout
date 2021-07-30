@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/relBg"-->
+<!--            android:layout_width="109dp"-->
+<!--            android:layout_height="12dp"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:background="@drawable/bg_progressbar_loop_background">-->
+<!--            <TextView-->
+<!--                android:id="@+id/tvBFB"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:text="0%"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:translationZ="3dp"-->
+<!--                android:textSize="9sp" />-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cardCornerRadius="10dp">-->
+
+<!--                <FrameLayout-->
+<!--                    android:id="@+id/flFrame"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:background="@mipmap/bg_bar_bg"-->
+<!--                    android:clipChildren="true">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ivAnimLeft"-->
+<!--                        android:layout_width="110dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:background="@mipmap/bg_bar_jd" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ivAnimRight"-->
+<!--                        android:layout_width="110dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:background="@mipmap/bg_bar_jd" />-->
+<!--                </FrameLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
+
+
+<!--        </RelativeLayout>-->
+        <com.yw.library.LoopProgressBarView
+            android:id="@+id/loopProgressBarView"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:text="开始动画" />
+<!--    </RelativeLayout>-->
+</RelativeLayout>

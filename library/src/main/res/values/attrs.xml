@@ -17,11 +17,15 @@
         <attr name="sliderBg" format="color|reference" />
         <attr name="sliderChildBg" format="color|reference" />
         <attr name="sliderWidth" format="dimension" />
+<!--        switchImageView-->
+        <attr name="uncheckres" format="reference|color" />
+        <attr name="checkres" format="reference|color" />
     </declare-styleable>
-<!--    价格插件-->
+
+    <!--    价格插件-->
     <declare-styleable name="price">
         <attr name="priceColor" format="reference|color" />
-        <attr name="priceRMB" format="integer"/>
+        <attr name="priceRMB" format="integer" />
         <attr name="priceEndSize" format="integer" />
         <attr name="priceStartSize" format="integer" />
     </declare-styleable>
@@ -61,5 +65,8 @@
             <enum name="STROKE" value="0"></enum>
             <enum name="FILL" value="1"></enum>
         </attr>
+
     </declare-styleable>
+
+
 </resources>
