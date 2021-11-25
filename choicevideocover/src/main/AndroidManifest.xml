@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yw.choicevideocover">
+
+    <application>
+        <activity android:name=".ui.ChoiceVideoCoverActivity" />
+    </application>
+</manifest>

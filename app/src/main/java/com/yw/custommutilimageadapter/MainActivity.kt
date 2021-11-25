@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.constraintlayout.utils.widget.MockView
 import com.airbnb.lottie.LottieAnimationView
+import com.yw.choicevideocover.ui.ChoiceVideoCoverActivity
 import com.yw.custommutilimageadapter.adapter.BaseListAdapter
 import com.yw.custommutilimageadapter.adapter.MainAdapter
 import com.yw.custommutilimageadapter.bean.ClassBean
@@ -57,6 +58,9 @@ class MainActivity : AppCompatActivity() {
         list.add(ClassBean("改变TextView部分字体 颜色", TextViewPartTextColorActivity::class.java.name))
         list.add(ClassBean("可两个图标切换的ImageView", SwitchImageViewActivity::class.java.name))
         list.add(ClassBean("进度条动画", ProgressBarLoopBackgroundActivity::class.java.name))
+        list.add(ClassBean("多重颜色渐变背景", MultiColorBackgroundActivity::class.java.name))
+        list.add(ClassBean("Glide加载gif", GlideGifActivity::class.java.name))
+        list.add(ClassBean("加载视频封面图", ChoiceVideoCoverActivity::class.java.name))
 
         val adapter = MainAdapter(this, list,
             BaseListAdapter.OnListItemClickListener<ClassBean> { data, position ->

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="12.5dp"
+        android:text="取消"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:id="@+id/linearMiddle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tvSubmit"
+        android:layout_below="@+id/tvCancel"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+
+        <ImageView
+            android:id="@+id/ivTest"
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:layout_alignParentRight="true"
+            android:translationZ="3dp"
+            android:visibility="gone" />
+
+        <!--    <VideoView-->
+        <!--        android:id="@+id/videoView"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="400dp"-->
+        <!--        android:layout_below="@+id/tvCancel"-->
+        <!--        android:layout_gravity="center"-->
+        <!--        android:layout_centerHorizontal="true"-->
+        <!--        android:layout_marginStart="37.5dp"-->
+        <!--        android:layout_marginTop="33.5dp"-->
+        <!--        android:layout_marginEnd="37.5dp" />-->
+        <ImageView
+            android:id="@+id/ivCoverView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_below="@+id/tvCancel"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="37.5dp"
+            android:layout_marginTop="33.5dp"
+            android:layout_weight="8"
+            android:layout_marginEnd="37.5dp"
+            android:scaleType="matrix" />
+
+        <TextView
+            android:id="@+id/tvCenterTips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivCoverView"
+            android:gravity="center"
+            android:text="左右滑动选择背景图"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_above="@+id/tvSubmit"
+            android:layout_below="@+id/tvCenterTips"
+            android:layout_marginStart="24dp"
+            android:layout_weight="2"
+            android:layout_marginEnd="24dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivChoiceImage"
+                android:layout_width="40dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/icon_choice_video_cover" />
+
+            <FrameLayout
+                android:id="@+id/sel_cover_frame_layout"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:layout_gravity="center_vertical">
+
+                <com.yw.choicevideocover.widget.VideoCoverRecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_vertical" />
+
+                <com.yw.choicevideocover.widget.ThumbnailSelTimeView
+                    android:id="@+id/thumbnailSelTimeView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:translationZ="3dp" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSubmit"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="52dp"
+        android:background="@drawable/bg_video_cover_submit"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</RelativeLayout>

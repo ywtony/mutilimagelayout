@@ -1,3 +1,4 @@
+include ':choicevideocover'
 include ':library'
 include ':app'
 rootProject.name = "CustomMutilImageAdapter"

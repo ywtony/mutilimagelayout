@@ -101,7 +101,8 @@
         <activity android:name=".ui.TransAnimitActivity" android:label="属性动画"/>
         <activity android:name=".ui.WebRTCActivity" android:label="WebRTC测试"/>
         <activity android:name=".ui.SwitchImageViewActivity" android:label="可两张图片切换的imageview"/>
-
+        <activity android:name=".ui.MultiColorBackgroundActivity" android:label="多重颜色渐变"/>
+        <activity android:name=".ui.GlideGifActivity" android:label="Glide加载gif"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
